@@ -8,14 +8,14 @@ import java.util.List;
 public class Computer {
 
     private static final int NUMBER_SIZE = 3;
-    private final ComputerNumbers numbers;
+    private final Numbers numbers;
 
     public Computer() {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < NUMBER_SIZE) {
             addNumbers(numbers);
         }
-        this.numbers = new ComputerNumbers(numbers);
+        this.numbers = new Numbers(numbers);
     }
 
     private void addNumbers(List<Integer> numbers) {
@@ -29,7 +29,7 @@ public class Computer {
         return !numbers.contains(number);
     }
 
-    public ComputerNumbers getNumbers() {
+    public Numbers getNumbers() {
         return numbers;
     }
 
