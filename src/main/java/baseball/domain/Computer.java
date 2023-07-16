@@ -4,6 +4,7 @@ import baseball.util.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Computer {
 
@@ -15,7 +16,7 @@ public class Computer {
         while (numbers.size() < NUMBER_SIZE) {
             addNumbers(numbers);
         }
-        this.numbers = new Numbers(numbers);
+        this.numbers = new Numbers(numbers.stream().map(String::valueOf).collect(Collectors.joining()));
     }
 
     private void addNumbers(List<Integer> numbers) {
