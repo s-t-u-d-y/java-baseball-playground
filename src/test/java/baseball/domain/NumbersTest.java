@@ -23,9 +23,9 @@ public class NumbersTest {
     void addNumbers() {
         Numbers numbers = new Numbers("123");
         assertAll("다중 검사",
-                () -> assertThat(numbers.getOne()).isEqualTo(1),
-                () -> assertThat(numbers.getTwo()).isEqualTo(2),
-                () -> assertThat(numbers.getTree()).isEqualTo(3)
+                () -> assertThat(numbers.getFirst()).isEqualTo(1),
+                () -> assertThat(numbers.getSecond()).isEqualTo(2),
+                () -> assertThat(numbers.getThird()).isEqualTo(3)
         );
     }
 

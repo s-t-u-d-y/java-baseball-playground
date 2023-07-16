@@ -12,6 +12,7 @@ public class ResultView {
     public static void printResult(EnumMap<Hint, Integer> hints) {
         hints.keySet().stream()
                 .sorted((e1, e2) -> Integer.compare(e1.getSort(), e2.getSort()))
+                .filter(hint -> hints.get(hint) > 0)
                 .collect(Collectors.toMap(k -> k, hints::get))
                 .forEach(ResultView::append);
         System.out.println(sb.toString());

@@ -13,9 +13,9 @@ public class UserTest {
     void createUser() {
         User user = new User("123");
         assertAll("유저 숫자 검사",
-                () -> assertThat(user.getNumbers().getOne()).isEqualTo(1),
-                () -> assertThat(user.getNumbers().getTwo()).isEqualTo(2),
-                () -> assertThat(user.getNumbers().getTree()).isEqualTo(3)
+                () -> assertThat(user.getNumbers().getFirst()).isEqualTo(1),
+                () -> assertThat(user.getNumbers().getSecond()).isEqualTo(2),
+                () -> assertThat(user.getNumbers().getThird()).isEqualTo(3)
         );
     }
 
