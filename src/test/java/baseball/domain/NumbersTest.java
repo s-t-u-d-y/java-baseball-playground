@@ -3,10 +3,10 @@ package baseball.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class NumbersTest {
 
@@ -22,7 +22,11 @@ public class NumbersTest {
     @Test
     void addNumbers() {
         Numbers numbers = new Numbers("123");
-        assertThat(numbers.getValues()).hasSize(3);
+        assertAll("다중 검사",
+                () -> assertThat(numbers.getOne()).isEqualTo(1),
+                () -> assertThat(numbers.getTwo()).isEqualTo(2),
+                () -> assertThat(numbers.getTree()).isEqualTo(3)
+        );
     }
 
 }

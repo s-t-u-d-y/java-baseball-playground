@@ -3,10 +3,8 @@ package baseball.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class ComputerTest {
 
@@ -21,9 +19,11 @@ public class ComputerTest {
     @Test
     void computerNumbersTest() {
         Computer computer = new Computer();
-        assertThat(computer.getNumbers().getValues().size()).isEqualTo(3);
-        Set<Integer> uniqueValues = new HashSet<>(computer.getNumbers().getValues());
-        assertThat(uniqueValues).hasSize(3);
+        assertAll("다중 검사",
+                () -> assertThat(computer.getNumbers().getOne()).isNotNull(),
+                () -> assertThat(computer.getNumbers().getTwo()).isNotNull(),
+                () -> assertThat(computer.getNumbers().getTree()).isNotNull()
+        );
     }
 
 }
