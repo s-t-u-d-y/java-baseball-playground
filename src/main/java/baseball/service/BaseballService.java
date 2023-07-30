@@ -9,6 +9,7 @@ import java.util.*;
 public class BaseballService {
 
     private static final int MAX_LENGTH = 3;
+    private static final int MAX_RANDOM_NUMBER = 9;
 
     public List<Integer> getRandomNumberList(){
         List<Integer> resultList = new ArrayList<>();
@@ -28,7 +29,7 @@ public class BaseballService {
 
     private Integer createRandomNumber(){
         Random random = new Random();
-        return random.nextInt(9) + 1;
+        return random.nextInt(MAX_RANDOM_NUMBER) + 1;
     }
 
     public Integer getBallCount(User users, Computer computer){
