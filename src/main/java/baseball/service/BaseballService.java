@@ -1,44 +1,63 @@
 package baseball.service;
 
+
+import baseball.domain.Computer;
+import baseball.domain.User;
+
 import java.util.*;
 
 public class BaseballService {
+
+    private static final int MAX_LENGTH = 3;
+
     public List<Integer> getRandomNumberList(){
         List<Integer> resultList = new ArrayList<>();
-        while (resultList.size() < 3){
-            Integer randomNumber = createRandomNumber();
-            if(!resultList.contains(randomNumber)) resultList.add(randomNumber);
+        while (resultList.size() < MAX_LENGTH){
+            addNumber(resultList);
         }
-        //System.out.println("랜덤숫자 : " + resultList.toString());
 
         return resultList;
     }
 
-    public Integer createRandomNumber(){
+    private void addNumber(List<Integer> numbers){
+        Integer randomNumber = createRandomNumber();
+        if(!numbers.contains(randomNumber)){
+            numbers.add(randomNumber);
+        }
+    }
+
+    private Integer createRandomNumber(){
         Random random = new Random();
         return random.nextInt(9) + 1;
     }
 
-    public Integer getBallCount(List<Integer> userList, List<Integer> randomList){
+    public Integer getBallCount(User users, Computer computer){
         Integer ballCount = 0;
 
-        ListIterator<Integer> it = randomList.listIterator();
-        for(int i=0; i < randomList.size(); i++){
-            if(userList.contains(randomList.get(i)) && !Objects.equals(userList.get(i), randomList.get(i))) ballCount++;
+        List<Integer> userNumber = users.getUserNumber().getNumber();
+        List<Integer> computerNumber = computer.getComputerNumber().getNumber();
+        for(int i=0; i < computerNumber.size(); i++){
+            ballCount += checkCount(userNumber.contains(computerNumber.get(i)) && !Objects.equals(userNumber.get(i), computerNumber.get(i)));
         }
 
         return ballCount;
     }
 
-    public Integer getStrikeCount(List<Integer> userList, List<Integer> randomList){
+    public Integer getStrikeCount(User users, Computer computer){
         Integer strikeCount = 0;
 
-        ListIterator<Integer> it = userList.listIterator();
-        while (it.hasNext()) {
-            if(randomList.get(it.nextIndex()).equals(it.next())) strikeCount++;
+        ListIterator<Integer> it = users.getUserNumber().getNumber().listIterator();
+        while (it.hasNext()){
+            strikeCount += checkCount(computer.getComputerNumber().getNumber().get(it.nextIndex()).equals(it.next()));
         }
 
         return strikeCount;
+    }
+
+    private Integer checkCount(Boolean isExist){
+        Integer count = 0;
+        if(isExist) count++;
+        return count;
     }
 
 }

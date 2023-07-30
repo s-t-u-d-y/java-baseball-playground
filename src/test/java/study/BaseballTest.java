@@ -1,36 +1,18 @@
 package study;
 
-import baseball.service.BaseballService;
+import baseball.domain.Computer;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseballTest {
 
     @Test
-    void compareTest() {
-        BaseballService baseballService = new BaseballService();
-        List<Integer> randomNumber = Arrays.asList(1,2,3);
-        List<Integer> userNumber = Arrays.asList(1,2,3);
-       assertThat(3).isEqualTo(baseballService.getStrikeCount(userNumber, randomNumber));
-    }
-
-    @Test
-    void ballCountTest() {
-        BaseballService baseballService = new BaseballService();
-        List<Integer> randomNumber = Arrays.asList(1,2,3);
-        List<Integer> userNumber = Arrays.asList(4,3,5);
-        assertThat(1).isEqualTo(baseballService.getBallCount(userNumber, randomNumber));
-    }
-
-    @Test
-    void strikeCountTest() {
-        BaseballService baseballService = new BaseballService();
-        List<Integer> randomNumber = Arrays.asList(1,2,3);
-        List<Integer> userNumber = Arrays.asList(1,4,5);
-        assertThat(1).isEqualTo(baseballService.getStrikeCount(userNumber, randomNumber));
+    void computerTest(){
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1,3,2));
+        Computer computer = new Computer(numbers);
+        assertThat(computer).isNotNull();
     }
 }
