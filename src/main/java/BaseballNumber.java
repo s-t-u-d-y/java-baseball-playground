@@ -4,14 +4,14 @@ import java.util.stream.Collectors;
 
 public class BaseballNumber {
 
+    private static final int MAX_RANDOM_NUMBER_SIZE = 3;
+    private static final int MAX_NUMBER = 9;
     private String baseballNumber;
 
-    private Set set;
+
 
     private BaseballNumber() {
-        set = new LinkedHashSet();
         createRandomNumber();
-        baseballNumber = joiningBaseballNumber();
     }
 
     public static BaseballNumber create() {
@@ -26,29 +26,11 @@ public class BaseballNumber {
 
     }
 
-    private void createRandomNumber() {
-        addBaseballNumber(getRandomNumber());
-    }
-
-    private int getRandomNumber() {
-        return (int) (Math.random() * 9) + 1;
-    }
-
-    private void addBaseballNumber(int number) {
-        if (this.set.size() == 3) {
-            return;
+    public void createRandomNumber() {
+        Set<Integer> set = new LinkedHashSet<>();
+        while (set.size() <= MAX_RANDOM_NUMBER_SIZE) {
+            set.add(NumberUtils.getRandomNumber(MAX_NUMBER));
         }
-
-        this.set.add(number);
-        addBaseballNumber(getRandomNumber());
     }
 
-    private String joiningBaseballNumber() {
-        return (String) set.stream().map(String::valueOf)
-                .collect(Collectors.joining());
-    }
-
-    public String getBaseballNumber() {
-        return this.baseballNumber;
-    }
 }

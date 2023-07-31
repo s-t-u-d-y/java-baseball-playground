@@ -12,6 +12,11 @@ public class InputViw {
         return new InputViw();
     }
 
+    public void printInputMessage() {
+        System.out.print("숫자를 입력해 주세요 : ");
+    }
+
+
     public String nextString() {
         return sc.next();
     }
