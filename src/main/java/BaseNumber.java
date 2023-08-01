@@ -4,6 +4,10 @@ import java.util.stream.Collectors;
 
 public class BaseNumber extends Numbers {
 
+    private static final int MAX_RANDOM_NUMBER = 9;
+    private static final int MAX_RANDOM_NUMBER_SIZE = 3;
+    private static final int ADDITIONAL_NUMBER = 1;
+
     private BaseNumber() {
 
     }
@@ -14,15 +18,14 @@ public class BaseNumber extends Numbers {
 
     public void createRandomNumber() {
         Set<Integer> set = new LinkedHashSet<>();
-        while (set.size() < 3) {
-            int num = (int) (Math.random() * 9) + 1;
+        while (set.size() < MAX_RANDOM_NUMBER_SIZE) {
+            int num = (int) (Math.random() * MAX_RANDOM_NUMBER) + ADDITIONAL_NUMBER;
             set.add(num);
         }
 
         String randomNumber = set.stream().map(String::valueOf)
                 .collect(Collectors.joining());
 
-        System.out.println("randomNumber = " + randomNumber);
         setNumber(randomNumber);
     }
 
