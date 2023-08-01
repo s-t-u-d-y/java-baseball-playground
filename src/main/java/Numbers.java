@@ -1,4 +1,6 @@
 public abstract class Numbers {
+
+    private static final int ZERO = 0;
     protected int firstNumber;
     protected int secondNumber;
     protected int thirdNumber;
@@ -26,6 +28,22 @@ public abstract class Numbers {
         if (this.thirdNumber == numbers.firstNumber || this.thirdNumber == numbers.secondNumber) ballCount++;
 
         return ballCount;
+    }
+
+    public boolean strikeCountOverZero(Numbers numbers) {
+        return getStrikeCount(numbers) > ZERO;
+    }
+
+    public boolean ballCountOverZero(Numbers numbers) {
+        return getBallCount(numbers) > ZERO;
+    }
+
+    public boolean isStrikeOut(Numbers numbers) {
+        return equals(numbers);
+    }
+
+    public boolean isNotMatched(Numbers numbers) {
+        return getStrikeCount(numbers) == ZERO && getBallCount(numbers) == ZERO;
     }
 
     @Override

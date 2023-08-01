@@ -19,9 +19,10 @@ public class BaseNumber extends Numbers {
             set.add(num);
         }
 
-        String randomNumber = (String) set.stream().map(String::valueOf)
+        String randomNumber = set.stream().map(String::valueOf)
                 .collect(Collectors.joining());
 
+        System.out.println("randomNumber = " + randomNumber);
         setNumber(randomNumber);
     }
 

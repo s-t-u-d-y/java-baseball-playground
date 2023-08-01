@@ -1,15 +1,14 @@
 public class BaseballGame {
 
+    private static final int ADDITIONAL_GAME_NUMBER = 1;
+    private static final int EXIT_GAME_NUMBER = 2;
     private boolean isProgress = true;
     private final InputViw inputView;
-    private final ResultView resultView;
     private final BaseNumber baseNumber;
     private final InputNumber inputNumber;
 
-
     private BaseballGame() {
         inputView = InputViw.create();
-        resultView = ResultView.create();
         baseNumber = BaseNumber.create();
         inputNumber = InputNumber.create();
     }
@@ -25,11 +24,9 @@ public class BaseballGame {
 
             inputNumber.setNumber(inputBaseballNumber());
 
-            verifyAndPrint();
+            printResult();
 
-
-
-            break;
+            inputAdditionalGameAndExitNumber();
         }
     }
 
@@ -41,14 +38,30 @@ public class BaseballGame {
         return inputView.nextString();
     }
 
-    private void verifyAndPrint() {
-        int strikeCount = baseNumber.getStrikeCount(inputNumber);
-        int ballCount = baseNumber.getBallCount(inputNumber);
-
-        resultView.printResult(strikeCount, ballCount);
+    private void printResult() {
+        ResultView.create(baseNumber, inputNumber)
+                .printResult();
     }
 
+    private void inputAdditionalGameAndExitNumber() {
+        if (!baseNumber.isStrikeOut(inputNumber)) {
+            return;
+        }
 
+        int inputNumber = inputView.nextInt();
+        if (inputNumber == EXIT_GAME_NUMBER) {
+            exitGame();
+        }
+
+        if (inputNumber == ADDITIONAL_GAME_NUMBER) {
+            baseNumber.createRandomNumber();
+        }
+    }
+
+    private void exitGame() {
+        isProgress = false;
+        inputView.destroy();
+    }
 
 
 }
