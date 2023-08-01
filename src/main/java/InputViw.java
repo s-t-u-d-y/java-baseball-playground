@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class InputViw {
 
+    private static final String INPUT_MESSAGE = "숫자를 입력해 주세요 : ";
     Scanner sc;
 
     private InputViw() {
@@ -13,7 +14,7 @@ public class InputViw {
     }
 
     public void printInputMessage() {
-        System.out.print("숫자를 입력해 주세요 : ");
+        System.out.print(INPUT_MESSAGE);
     }
 
 
